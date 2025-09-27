@@ -4,7 +4,8 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
   const [position, setPosition] = useState({ x: 100, y: 300 });
   const [showPrompt, setShowPrompt] = useState(false);
   const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 });
-
+  const [walkFrame, setWalkFrame] = useState(0); // ← Nuevo estado para la animación
+  const [isMoving, setIsMoving] = useState(false); // ← Para saber si se está moviendo
   // Actualizar tamaño de ventana
   useEffect(() => {
     const handleResize = () => {
@@ -28,22 +29,44 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
     const newY = Math.max(50, Math.min(windowSize.height - 150, position.y + dy));
     
     setPosition({ x: newX, y: newY });
+    setIsMoving(true); // ← Indicar que está en movimiento
     
-    // Detectar cuando está cerca de la puerta (lado derecho)
+    // Cambiar frame de caminado (0, 1, 2, 3...)
+    setWalkFrame(prev => (prev + 1) % 4);
+    
     const doorX = windowSize.width - 150;
     const doorY = windowSize.height / 2;
     
     setShowPrompt(newX > doorX - 100 && Math.abs(newY - doorY) < 100);
+    
+    // Resetear movimiento después de un tiempo
+    setTimeout(() => setIsMoving(false), 200);
+  };
+
+  const getSuperAnimatedCharacter = () => {
+    const superFrames = [
+      // Secuencia completa de caminado
+      `  O\n lol\n  W\n / \\`,  // Posición neutral
+      `  O\n(lol)\n  W\n /| `,  // Brazo izquierdo moviéndose
+      `  O\n lol\n  W\n | \\`,  // Cruzado
+      `  O\n(lol)\n  W\n |\\ `,  // Brazo derecho moviéndose
+      `  O\n lol\n  W\n/ |`,   // Paso amplio izquierdo
+      `  O\n(lol)\n  W\n | `,   // Centro
+      `  O\n lol\n  W\n| \\`,   // Paso amplio derecho
+      `  O\n(lol)\n  W\n  |`    // Centro
+    ];
+    
+    return superFrames[walkFrame % 8];
   };
 
   useEffect(() => {
     const handleKeyPress = (e) => {
       switch(e.key) {
-        case 'ArrowRight': moveCharacter(30, 0); break;
-        case 'ArrowLeft': moveCharacter(-30, 0); break;
-        case 'ArrowUp': moveCharacter(0, -30); break;
-        case 'ArrowDown': moveCharacter(0, 30); break;
-        case 'Enter':
+        case 'ArrowRight': case 'd': moveCharacter(30, 0); break;
+        case 'ArrowLeft': case 'a': moveCharacter(-30, 0); break;
+        case 'ArrowUp': case 'w': moveCharacter(0, -30); break;
+        case 'ArrowDown': case 's': moveCharacter(0, 30); break;
+        case 'Enter': case ' ':
           if (showPrompt) onEnterSite();
           break;
       }
@@ -52,6 +75,17 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [position, showPrompt, windowSize]);
+
+
+  useEffect(() => {
+    if (!isMoving) {
+      const idleAnimation = setInterval(() => {
+        setWalkFrame(prev => (prev + 1) % 4);
+      }, 500); // Animación lenta cuando está quieto
+
+      return () => clearInterval(idleAnimation);
+    }
+  }, [isMoving]);
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
@@ -94,19 +128,18 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
         </div>
       </div>
 
-      {/* PERSONAJE - SE MUEVE POR TODA LA PANTALLA */}
+      
       <div 
-        className="fixed text-yellow-400 text-3xl z-20 ascii-glow"
+        className="fixed text-yellow text-3xl z-20"
         style={{ 
           left: `${position.x}px`, 
-          top: `${position.y}px`
+          top: `${position.y}px`,
+          textShadow: '0 0 10px rgba(0,0,0,0.3)',
+          transition: 'left 0.2s ease, top 0.2s ease' // ← Transición suave
         }}
       >
         <pre className="leading-tight">
-          {`  O\n`}
-          {` lol\n`}
-          {`  W\n`}
-          {`  |`}
+          {getSuperAnimatedCharacter()}
         </pre>
       </div>
 
