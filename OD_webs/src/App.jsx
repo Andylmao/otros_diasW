@@ -1,53 +1,57 @@
 import { useEffect, useState } from 'react'
-import {doc, getDoc} from 'firebase/firestore'
+import { doc, getDoc } from 'firebase/firestore'
 import { db } from '/home/andylml/Desktop/otros_dias/OD_webs/src/firebase-config.js'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
+import Header from './components/Header'
+import HeroCarousel from './components/HeroCarousel'
+import FeaturedProducts from './components/FeaturedProducts'
+import Artists from './components/Artists'
+import Footer from './components/Footer'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [userData, setUserData] = useState(null)
+  const [currentSection, setCurrentSection] = useState('home')
 
   const docRef = doc(db, "users", "yoDcY5Yrf1rcVDcb4K9Y")
 
   const getData = async () => { 
     const docSnap = await getDoc(docRef);
-
-    console.log(docSnap.data());
+    if (docSnap.exists()) {
+      setUserData(docSnap.data());
+      console.log(docSnap.data());
+    }
   };
 
-  useEffect( () => {
+  useEffect(() => {
     getData()
-
   }, [])
 
-  
+  // Función para cambiar sección
+  const handleSectionChange = (section) => {
+    setCurrentSection(section);
+  };
 
-  
+  const renderSection = () => {
+    switch (currentSection) {
+      case 'artists':
+        return <Artists />;
+      case 'home':
+      default:
+        return (
+          <>
+            <HeroCarousel />
+            <FeaturedProducts />
+          </>
+        );
+    }
+  };
+
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className='text-red-500'>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="min-h-screen bg-gray-900">
+      <Header onSectionChange={handleSectionChange} currentSection={currentSection} />
+      {renderSection()}
+      <Footer />
+    </div>
   )
 }
 
