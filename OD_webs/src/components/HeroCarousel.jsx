@@ -6,21 +6,21 @@ const HeroCarousel = () => {
   const slides = [
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "OD_webs/src/images/blog.cholula.png",
       title: "Nueva Colección Verano",
       subtitle: "Descubre las últimas tendencias",
       buttonText: "Comprar Ahora"
     },
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "OD_webs/src/images/catrin.jpg",
       title: "Hasta 50% de Descuento",
       subtitle: "En toda la tienda por tiempo limitado",
       buttonText: "Ver Ofertas"
     },
     {
       id: 3,
-      image: "https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      image: "OD_webs/src/images/puebla_ciudad_entrada.jpg",
       title: "Envío Gratis",
       subtitle: "En compras mayores a $100",
       buttonText: "Descubrir"
