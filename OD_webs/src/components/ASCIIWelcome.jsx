@@ -149,13 +149,13 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
       </div>
 
       {/* INSTRUCCIONES - ESQUINA INFERIOR IZQUIERDA */}
-      <div className="fixed bottom-12 left-10 text-gray-400 ascii-text z-30 text-lg">
+      <div className="fixed bottom-12 left-10 text-white-400 ascii-text z-30 text-lg">
         <div>↑↓←→_MOVIMIENTO</div>
         <div>ENTER_INTERACTUAR</div>
       </div>
 
       {/* COORDENADAS - ESQUINA SUPERIOR DERECHA */}
-      <div className="fixed top-12 right-10 text-gray-500 ascii-text z-30 text-sm">
+      <div className="fixed top-12 right-10 text-white-500 ascii-text z-30 text-sm">
         <div>X: {Math.round(position.x)}</div>
         <div>Y: {Math.round(position.y)}</div>
         <div>VENTANA: {windowSize.width}x{windowSize.height}</div>
