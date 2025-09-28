@@ -34,10 +34,18 @@ body.inverted {
   box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
 }
 
+.ascii-borderb {
+  border: 2px solid #000000;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
 .ascii-glow {
   text-shadow: 0 0 10px rgba(255, 255, 0, 0.7);
 }
 
+.ascii-glowb {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
 /* === EFECTOS RTS / MONITOR VIEJO === */
 
 /* Efecto de scanlines (líneas de barrido) */

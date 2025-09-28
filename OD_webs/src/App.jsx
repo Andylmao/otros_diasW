@@ -7,11 +7,12 @@ import HeroCarousel from './components/HeroCarousel'
 import FeaturedProducts from './components/FeaturedProducts'
 import Artists from './components/Artists'
 import Footer from './components/Footer'
-import RTSEffects from './components/RTSEffects' // Nuevo componente
+import RTSEffects from './components/RTSEffects'
 import './App.css'
 
 function App() {
   const [userData, setUserData] = useState(null)
+  const [currentSection, setCurrentSection] = useState('welcome') // 'welcome', 'home', 'artists'
   const [isInverted, setIsInverted] = useState(false)
   const [hasEntered, setHasEntered] = useState(false)
 
@@ -35,8 +36,18 @@ function App() {
 
   const handleEnterSite = () => {
     setHasEntered(true);
+    setCurrentSection('home');
   };
 
+  const handleSectionChange = (section) => {
+    setCurrentSection(section);
+  };
+
+  const handleToggleColors = () => {
+    setIsInverted(!isInverted);
+  };
+
+  // Pantalla de bienvenida ASCII
   if (!hasEntered) {
     return (
       <div className={`min-h-screen ${isInverted ? 'bg-white' : 'bg-black'} overflow-hidden relative`}>
@@ -49,18 +60,33 @@ function App() {
     );
   }
 
+  // Renderizar la sección actual
+  const renderCurrentSection = () => {
+    switch (currentSection) {
+      case 'artists':
+        return <Artists isInverted={isInverted} />;
+      
+      case 'home':
+      default:
+        return (
+          <>
+            <HeroCarousel isInverted={isInverted} />
+            <FeaturedProducts isInverted={isInverted} />
+          </>
+        );
+    }
+  };
+
   return (
     <div className={`min-h-screen ${isInverted ? 'bg-white text-black' : 'bg-black text-white'} relative`}>
       <RTSEffects isInverted={isInverted} />
       <Header 
-        onSectionChange={() => {}} 
-        currentSection="home"
-        onToggleColors={() => setIsInverted(!isInverted)}
+        onSectionChange={handleSectionChange} 
+        currentSection={currentSection}
+        onToggleColors={handleToggleColors}
         isInverted={isInverted}
       />
-      <HeroCarousel isInverted={isInverted} />
-      <FeaturedProducts isInverted={isInverted} />
-      <Artists isInverted={isInverted} />
+      {renderCurrentSection()}
       <Footer isInverted={isInverted} />
     </div>
   )

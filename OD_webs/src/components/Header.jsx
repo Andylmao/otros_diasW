@@ -9,7 +9,7 @@ const Header = ({ onSectionChange, currentSection, onToggleColors, isInverted })
   };
 
   return (
-    <header className={`${isInverted ? 'bg-white text-black' : 'bg-black text-white'} border-b-2 border-yellow-400 sticky top-0 z-50`}>
+    <header className={`${isInverted ? 'bg-white border-black' : 'bg-black border-yellow-400'} border-b-2 sticky top-0 z-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -64,10 +64,6 @@ const Header = ({ onSectionChange, currentSection, onToggleColors, isInverted })
 
             <button className="text-gray-300 hover:text-white transition duration-300">
               <span className="ascii-text">[BUSCAR]</span>
-            </button>
-            
-            <button className="text-gray-300 hover:text-white transition duration-300">
-              <span className="ascii-text">[CARRITO]</span>
             </button>
 
             {/* Mobile menu button */}

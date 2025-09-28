@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Artists = () => {
+const Artists = ({ isInverted }) => {
   const [selectedArtist, setSelectedArtist] = useState(null);
 
   const artists = [
@@ -60,16 +60,25 @@ const Artists = () => {
     }
   ];
 
+  // Estilos basados en el modo invertido
+  const backgroundColor = isInverted ? 'bg-white' : 'bg-black';
+  const textColor = isInverted ? 'text-black' : 'text-white';
+  const secondaryTextColor = isInverted ? 'text-gray-700' : 'text-gray-300';
+  const borderColor = isInverted ? 'border-black' : 'border-yellow-400';
+  const cardBackground = isInverted ? 'bg-gray-100' : 'bg-gray-800';
+  const accentColor = isInverted ? 'text-black-600' : 'text-yellow-400';
+  const glowborder = isInverted ? 'ascii-borderb' : 'ascii-border';
+  const textglow = isInverted ?'ascii-glowb' : 'ascii-glow';
   return (
-    <section className="min-h-screen bg-gradient-to-br from-gray-900 to-black py-16">
+    <section className={`min-h-screen py-16 ${backgroundColor}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header de la sección */}
-        <div className="text-center mb-16">
-          <h2 className="arkham-title text-4xl md:text-6xl font-bold text-white mb-4 text-glow">
-            ARKHAM ARTISTS
+        <div className="text-center mb-16 ">
+          <h2 className={`ascii-text text-4xl md:text-6xl font-bold mb-4 ${accentColor} glitch-subtle ${accentColor} ${textglow}`}>
+            OTROS_ARTISTAS
           </h2>
-          <p className="arkham-font text-xl text-gray-300 max-w-3xl mx-auto">
-            Los maestros detrás del arte que define nuestra era. Cada diseño es una pieza de colección inspirada en el asilo de Arkham.
+          <p className={`ascii-text text-xl max-w-3xl mx-auto ${secondaryTextColor}`}>
+            Aqui va una descripcion de esta ventana
           </p>
         </div>
 
@@ -78,7 +87,7 @@ const Artists = () => {
           {artists.map((artist) => (
             <div 
               key={artist.id}
-              className="group relative bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-cyan-400 transition-all duration-300 hover:border-glow cursor-pointer"
+              className={`group relative ${cardBackground} rounded-lg overflow-hidden border ${borderColor} transition-all duration-300 cursor-pointer ${glowborder}`}
               onClick={() => setSelectedArtist(artist)}
             >
               <div className="aspect-square overflow-hidden">
@@ -89,11 +98,11 @@ const Artists = () => {
                 />
               </div>
               <div className="p-6">
-                <h3 className="arkham-title text-2xl font-bold text-white mb-2">{artist.name}</h3>
-                <p className="arkham-font text-cyan-400 font-semibold mb-2">{artist.alias}</p>
-                <p className="arkham-font text-gray-400 text-sm">{artist.specialty}</p>
+                <h3 className={`ascii-text text-2xl font-bold mb-2 ${textColor}`}>{artist.name}</h3>
+                <p className={`ascii-text font-semibold mb-2 ${accentColor}`}>{artist.alias}</p>
+                <p className={`ascii-text text-sm ${secondaryTextColor}`}>{artist.specialty}</p>
               </div>
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition duration-300"></div>
+              <div className={`absolute inset-0 ${isInverted ? 'bg-white' : 'bg-black'} bg-opacity-0 group-hover:bg-opacity-20 transition duration-300`}></div>
             </div>
           ))}
         </div>
@@ -101,11 +110,11 @@ const Artists = () => {
         {/* Modal de artista seleccionado */}
         {selectedArtist && (
           <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
-            <div className="bg-gray-900 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-cyan-500">
+            <div className={`${isInverted ? 'bg-white' : 'bg-gray-900'} rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto border ${borderColor}`}>
               <div className="relative">
                 <button 
                   onClick={() => setSelectedArtist(null)}
-                  className="absolute top-4 right-4 text-white bg-red-600 rounded-full p-2 z-10"
+                  className="absolute top-4 right-4 text-white bg-red-600 rounded-full p-2 z-10 hover:bg-red-700 transition duration-300"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -119,27 +128,27 @@ const Artists = () => {
                       alt={selectedArtist.name}
                       className="w-full h-64 object-cover rounded-lg mb-6"
                     />
-                    <h3 className="arkham-title text-3xl font-bold text-white mb-2">{selectedArtist.name}</h3>
-                    <p className="arkham-font text-cyan-400 text-xl mb-4">{selectedArtist.alias}</p>
-                    <p className="arkham-font text-gray-300 mb-4">{selectedArtist.bio}</p>
-                    <p className="arkham-font text-gray-400">Especialidad: {selectedArtist.specialty}</p>
+                    <h3 className={`ascii-text text-3xl font-bold mb-2 ${textColor}`}>{selectedArtist.name}</h3>
+                    <p className={`ascii-text text-xl mb-4 ${accentColor}`}>{selectedArtist.alias}</p>
+                    <p className={`ascii-text mb-4 ${secondaryTextColor}`}>{selectedArtist.bio}</p>
+                    <p className={`ascii-text ${secondaryTextColor}`}>Especialidad: {selectedArtist.specialty}</p>
                   </div>
                   
-                  <div className="p-8 bg-gray-800">
-                    <h4 className="arkham-title text-2xl font-bold text-white mb-6">Diseños Destacados</h4>
+                  <div className={`p-8 ${isInverted ? 'bg-gray-200' : 'bg-gray-800'}`}>
+                    <h4 className={`ascii-text text-2xl font-bold mb-6 ${textColor}`}>Diseños Destacados</h4>
                     <div className="space-y-4">
                       {selectedArtist.designs.map((design) => (
-                        <div key={design.id} className="flex items-center space-x-4 bg-gray-900 p-4 rounded-lg">
+                        <div key={design.id} className={`flex items-center space-x-4 ${isInverted ? 'bg-gray-300' : 'bg-gray-900'} p-4 rounded-lg`}>
                           <img
                             src={design.image}
                             alt={design.name}
                             className="w-16 h-16 object-cover rounded"
                           />
                           <div className="flex-1">
-                            <h5 className="arkham-font font-semibold text-white">{design.name}</h5>
-                            <p className="arkham-font text-cyan-400">{design.price}</p>
+                            <h5 className={`ascii-text font-semibold ${textColor}`}>{design.name}</h5>
+                            <p className={`ascii-text ${accentColor}`}>{design.price}</p>
                           </div>
-                          <button className="arkham-font bg-cyan-600 text-white px-4 py-2 rounded hover:bg-cyan-700 transition duration-300">
+                          <button className={`ascii-text ${isInverted ? 'bg-green-600 hover:bg-green-700' : 'bg-yellow-400 hover:bg-yellow-500'} text-black px-4 py-2 rounded transition duration-300`}>
                             Comprar
                           </button>
                         </div>
@@ -154,11 +163,11 @@ const Artists = () => {
 
         {/* Llamada a la acción */}
         <div className="text-center">
-          <div className="arkham-font bg-gradient-to-r from-cyan-900 to-purple-900 p-8 rounded-lg border border-cyan-500">
-            <h3 className="text-2xl font-bold text-white mb-4">¿ERES ARTISTA?</h3>
-            <p className="text-gray-300 mb-6">Únete a nuestra galería de creadores y muestra tu arte al mundo.</p>
-            <button className="arkham-font bg-cyan-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-cyan-700 transition duration-300">
-              Contactar para Colaborar
+          <div className={`ascii-text p-8 rounded-lg border ${borderColor} ${isInverted ? 'bg-gradient-to-r from-green-200 to-blue-200' : 'bg-gradient-to-r from-gray-800 to-gray-900'}`}>
+            <h3 className={`text-2xl font-bold mb-4 ${textColor}`}>¿ERES_ARTISTA?</h3>
+            <p className={`mb-6 ${secondaryTextColor}`}>Únete a nuestra galería de creadores y muestra tu arte al mundo.</p>
+            <button className={`ascii-text ${isInverted ? 'bg-green-600 hover:bg-green-700' : 'bg-yellow-400 hover:bg-yellow-500'} text-black px-8 py-3 rounded-lg font-semibold transition duration-300`}>
+              Contactar_para_Colaborar
             </button>
           </div>
         </div>

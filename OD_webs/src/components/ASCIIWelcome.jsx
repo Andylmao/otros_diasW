@@ -101,7 +101,7 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
       <div className="fixed top-10 left-0 right-0 text-center z-30">
         <div className="glitch-text">
           <h1 
-            className="text-yellow-400 text-5xl md:text-6xl font-bold ascii-text mt-2 glitch-subtle"
+            className="ascii-text text-4xl md:text-6xl font-bold mb-4 ${accentColor} glitch-subtle ${accentColor} ascii-glow"
             data-text="OTROS DÍAS"
           >
             OTROS DÍAS
@@ -114,7 +114,7 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
 
       {/* PUERTA - EXTREMO DERECHO, CENTRADA VERTICALMENTE */}
       <div 
-        className="fixed border-4 border-yellow-400 p-6 bg-black z-30 flex items-center justify-center ascii-border"
+        className="fixed border-4 border-yelyellowlow-400 p-6 bg-black z-30 flex items-center justify-center ascii-border"
         style={{ 
           right: '40px',
           top: '50%',
