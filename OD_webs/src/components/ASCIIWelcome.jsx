@@ -99,10 +99,15 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
       
       {/* TÍTULO - ARRIBA DEL TODO, CENTRADO */}
       <div className="fixed top-10 left-0 right-0 text-center z-30">
-        <h1 className="text-yellow-400 text-5xl md:text-6xl font-bold ascii-text ascii-glow inline-block">
-          OTROS DÍAS
-        </h1>
-        <div className="text-gray-300 text-xl md:text-2xl ascii-text mt-2">
+        <div className="glitch-text">
+          <h1 
+            className="text-yellow-400 text-5xl md:text-6xl font-bold ascii-text mt-2 glitch-subtle"
+            data-text="OTROS DÍAS"
+          >
+            OTROS DÍAS
+          </h1>
+        </div>
+        <div className="text-gray-300 text-xl md:text-2xl ascii-text mt-2 glitch-subtle">
           SISTEMA_INTERACTIVO_v1.0
         </div>
       </div>
