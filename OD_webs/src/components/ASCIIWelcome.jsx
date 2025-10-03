@@ -123,7 +123,7 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
           height: '160px'
         }}
       >
-        <div className="text-yellow-400 text-center ascii-text text-xl">
+        <div className="text-blue-400 text-center ascii-text text-xl">
           [    ]
           {showPrompt && (
             <div className="text-green-400 text-sm mt-2 ascii-glow">
