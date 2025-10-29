@@ -84,8 +84,8 @@ const FeaturedProducts = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Productos Destacados</h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-white-900 mb-4">Productos Destacados</h2>
+        <p className="text-lg text-white-600 max-w-2xl mx-auto">
           Descubre nuestras prendas más populares seleccionadas especialmente para ti
         </p>
       </div>

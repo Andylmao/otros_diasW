@@ -30,8 +30,8 @@ body.inverted {
 }
 
 .ascii-border {
-  border: 2px solid #ffff00;
-  box-shadow: 0 0 15px rgba(255, 255, 0, 0.5);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 15px rgba(33, 242, 37, 0.868);
 }
 
 .ascii-borderb {
@@ -40,7 +40,7 @@ body.inverted {
 }
 
 .ascii-glow {
-  text-shadow: 0 0 10px rgba(255, 255, 0, 0.7);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
 .ascii-glowb {
@@ -72,7 +72,7 @@ body.inverted .rts-scanlines {
     transparent 50%,
     rgba(255, 255, 255, 0.1) 50%
   );
-  background-size: 100% 4px;
+  background-size: 100% 10px;
 }
 
 /* Efecto de flicker (parpadeo) */
@@ -151,12 +151,22 @@ body.inverted .rts-vignette {
   left: 20px;
   right: 20px;
   bottom: 20px;
-  border: 2px solid rgba(255, 255, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.888);
   border-radius: 10px;
   pointer-events: none;
   z-index: 996;
 }
-
+.invertrts-screen-curvature {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.888);
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 996;
+}
 /* Efecto de brillo de monitor */
 .rts-screen-glow {
   position: fixed;
@@ -166,7 +176,7 @@ body.inverted .rts-vignette {
   height: 100%;
   background: radial-gradient(
     ellipse at center,
-    rgba(255, 255, 0, 0.1) 0%,
+    rgba(32, 32, 32, 0.386) 0%,
     transparent 70%
   );
   pointer-events: none;

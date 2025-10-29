@@ -9,27 +9,27 @@ const Header = ({ onSectionChange, currentSection, onToggleColors, isInverted })
   };
 
   return (
-    <header className={`${isInverted ? 'bg-white border-black' : 'bg-black border-yellow-400'} border-b-2 sticky top-0 z-50`}>
+    <header className={`${isInverted ? 'bg-white border-black' : 'bg-black border-white-400'} border-b-2 sticky top-0 z-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <button 
               onClick={() => handleNavigation('home')}
-              className="ascii-text text-2xl font-bold text-yellow-400 hover:text-yellow-300 transition duration-300"
+              className="ascii-text text-2xl font-bold text-white-400 hover:text-blue-300 transition duration-300"
             >
               OTROS_DÍAS
             </button>
           </div>
 
           {/* Navigation - Desktop */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className={`${isInverted ? 'bg-white border-black' : 'bg-black border-white-400'} hidden md:flex space-x-8`}>
             <button 
               onClick={() => handleNavigation('home')}
               className={`ascii-text px-3 py-2 text-sm font-medium transition duration-300 ${
                 currentSection === 'home' 
-                  ? 'text-yellow-400 border-b-2 border-yellow-400' 
-                  : 'text-gray-300 hover:text-white'
+                  ? 'text-white-400 border-b-2 border-white-400' 
+                  : 'text-blue-300 hover:text-blue'
               }`}
             >
               INICIO
@@ -39,14 +39,20 @@ const Header = ({ onSectionChange, currentSection, onToggleColors, isInverted })
               onClick={() => handleNavigation('artists')}
               className={`ascii-text px-3 py-2 text-sm font-medium transition duration-300 ${
                 currentSection === 'artists' 
-                  ? 'text-yellow-400 border-b-2 border-yellow-400' 
-                  : 'text-gray-300 hover:text-white'
+                  ? 'text-white-400 border-b-2 border-white-400' 
+                  : 'text-blue-300 hover:text-blue'
               }`}
             >
               ARTISTAS
             </button>
             
-            <button className="ascii-text text-gray-300 hover:text-white px-3 py-2 text-sm font-medium">
+            <button onClick={() => handleNavigation('tienda')}
+              className={`ascii-text px-3 py-2 text-sm font-medium transition duration-300 ${
+                currentSection === 'tienda' 
+                  ? 'text-white-400 border-b-2 border-white-400' 
+                  : 'text-blue-300 hover:text-blue'
+              }`}
+            >  
               TIENDA
             </button>
           </nav>
@@ -56,13 +62,13 @@ const Header = ({ onSectionChange, currentSection, onToggleColors, isInverted })
             {/* Botón invertir colores */}
             <button 
               onClick={onToggleColors}
-              className="p-2 border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black transition duration-300 ascii-text"
+              className="p-2 border border-white-400 text-white-400 hover:bg-blue-400 hover:text-blue transition duration-300 ascii-text"
               title="Invertir colores"
             >
               {isInverted ? 'DARK' : 'LIGHT'}
             </button>
 
-            <button className="text-gray-300 hover:text-white transition duration-300">
+            <button className="text-gray-300 hover:text-blue-300 transition duration-300">
               <span className="ascii-text">[BUSCAR]</span>
             </button>
 
@@ -83,7 +89,7 @@ const Header = ({ onSectionChange, currentSection, onToggleColors, isInverted })
               <button 
                 onClick={() => handleNavigation('home')}
                 className={`ascii-text block w-full text-left px-3 py-2 text-base font-medium transition duration-300 ${
-                  currentSection === 'home' ? 'text-yellow-400' : 'text-gray-300'
+                  currentSection === 'home' ? 'text-white-400' : 'text-gray-300'
                 }`}
               >
                 INICIO
@@ -92,7 +98,7 @@ const Header = ({ onSectionChange, currentSection, onToggleColors, isInverted })
               <button 
                 onClick={() => handleNavigation('artists')}
                 className={`ascii-text block w-full text-left px-3 py-2 text-base font-medium transition duration-300 ${
-                  currentSection === 'artists' ? 'text-yellow-400' : 'text-gray-300'
+                  currentSection === 'artists' ? 'text-white-400' : 'text-gray-300'
                 }`}
               >
                 ARTISTAS

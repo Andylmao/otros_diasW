@@ -46,14 +46,14 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
   const getSuperAnimatedCharacter = () => {
     const superFrames = [
       // Secuencia completa de caminado
-      `  O\n lol\n  W\n / \\`,  // Posición neutral
-      `  O\n(lol)\n  W\n /| `,  // Brazo izquierdo moviéndose
-      `  O\n lol\n  W\n | \\`,  // Cruzado
-      `  O\n(lol)\n  W\n |\\ `,  // Brazo derecho moviéndose
-      `  O\n lol\n  W\n/ |`,   // Paso amplio izquierdo
-      `  O\n(lol)\n  W\n | `,   // Centro
-      `  O\n lol\n  W\n| \\`,   // Paso amplio derecho
-      `  O\n(lol)\n  W\n  |`    // Centro
+      `  O\n lol\n W\n / \\`,  // Posición neutral
+      `  O\n(lol)\n W\n /| `,  // Brazo izquierdo moviéndose
+      `  O\n lol\n W\n | \\`,  // Cruzado
+      `  O\n(lol)\n W\n |\\ `,  // Brazo derecho moviéndose
+      `  O\n lol\n W\n/ |`,   // Paso amplio izquierdo
+      `  O\n(lol)\n W\n | `,   // Centro
+      `  O\n lol\n W\n| \\`,   // Paso amplio derecho
+      `  O\n(lol)\n W\n  |`    // Centro
     ];
     
     return superFrames[walkFrame % 8];
@@ -95,7 +95,7 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
       <div className="rts-vignette"></div>
       
       {/* Borde amarillo alrededor de toda la ventana */}
-      <div className="fixed inset-0 border-8 border-yellow-400 pointer-events-none z-40"></div>
+      <div className="fixed inset-0 border-8 border-white-400 pointer-events-none z-40"></div>
       
       {/* TÍTULO - ARRIBA DEL TODO, CENTRADO */}
       <div className="fixed top-10 left-0 right-0 text-center z-30">
@@ -114,17 +114,17 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
 
       {/* PUERTA - EXTREMO DERECHO, CENTRADA VERTICALMENTE */}
       <div 
-        className="fixed border-4 border-yelyellowlow-400 p-6 bg-black z-30 flex items-center justify-center ascii-border"
+        className="fixed border-4 border-yellow-400 p-6 bg-black z-30 flex items-center justify-center ascii-border"
         style={{ 
           right: '40px',
           top: '50%',
           transform: 'translateY(-50%)',
-          width: '140px',
+          width: '100px',
           height: '160px'
         }}
       >
-        <div className="text-blue-400 text-center ascii-text text-xl">
-          [    ]
+        <div className="text-white-400 text-center ascii-text text-xl">
+          
           {showPrompt && (
             <div className="text-green-400 text-sm mt-2 ascii-glow">
               _ENTER_
@@ -173,13 +173,13 @@ const ASCIIWelcome = ({ onEnterSite, isInverted }) => {
 
       {/* GRID DE FONDO EN TODA LA PANTALLA */}
       <div 
-        className="fixed inset-0 opacity-5 pointer-events-none z-0"
+        className="fixed inset-0 opacity-7 pointer-events-none z-0"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(255,255,0,0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,0,0.3) 1px, transparent 1px)
+            linear-gradient(rgba(255, 255, 255, 0.88) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px)
           `,
-          backgroundSize: '50px 50px'
+          backgroundSize: '20px 20px'
         }}
       ></div>
     </div>
